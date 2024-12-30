@@ -1,0 +1,35 @@
+<div class="card">
+  <div class="title-wrapper">
+    <h1 class="title">
+      <span class="color-red">W</span>
+      <span class="color-pink">e</span>
+      <span class="color-green">l</span>
+      <span class="color-purple">c</span>
+      <span class="color-blue">o</span>
+      <span class="color-brown">m</span>
+      <span class="color-orange">e</span>
+    </h1>
+    <div class="title-outline">Welcome</div>
+  </div>
+
+  <p class="description">
+    <a href="https://codepen.io/6chinwei">codepen.io/6chinwei</a>
+  </p>
+</div>
+
+<svg xmlns="http://www.w3.org/2000/svg" style="position: absolute; width: 0; height: 0;">
+  <defs>
+    <!-- Turbulence filter for title -->
+    <filter id="turbulenceEffectForText" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="2" result="noise" seed="0">
+        <animate id="noiseAnimate" attributeName="seed" attributeType="XML" from="0" to="5" dur="1s" repeatCount="indefinite" />
+      </feTurbulence>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="10" xChannelSelector="R" yChannelSelector="G" />
+    </filter>
+    <!-- Turbulence filter for background -->
+    <filter id="turbulenceEffectForBackground" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.4" numOctaves="2" result="noise" seed="0"></feTurbulence>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="400" xChannelSelector="R" yChannelSelector="G" />
+    </filter>
+  </defs>
+</svg>

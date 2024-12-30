@@ -1,0 +1,175 @@
+$fontColor: #a3c9e4;
+$fontSize: 16px;
+$backgroundolor: rgb(0,13,32);
+$headerColor: #fff;
+$green: #00D683;
+
+body {
+  font-family: Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: $backgroundolor;
+  color: $fontColor;
+  margin: 0;
+  box-sizing: border-box;
+  width: 1170px;
+  font-size: $fontSize;
+//   text-shadow: 1px 1px #666;
+}
+
+// General
+$backgroundColor: rgb(0,13,32);
+$mainColor: #0065C1;
+
+// Circle
+$outsideRadius: 40px;
+$outsideBorder: 2px;
+$insideRadius: 28px;
+$insideBorder: 6px;
+
+// Title
+$titleLength: calc(80% - #{$outsideRadius});
+
+.header-component {
+  position: relative;  
+  background: $backgroundColor;
+}
+
+.circle {
+  // background: #000;
+  width: $outsideRadius * 2;
+  height: $outsideRadius * 2;
+  border-radius: $outsideRadius;
+  border: $outsideBorder solid rgba(88,152,210, 0.3);
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 2;
+  background: $backgroundColor;
+}
+
+.circle-inner {
+  // background: #000;
+  width: $insideRadius * 2;
+  height: $insideRadius * 2;
+  border-radius: $insideRadius + $insideBorder * 2;
+  // border: $insideBorder solid #0065C1;
+  border-width: $insideBorder;
+  border-style: solid;
+  // border-color: $mainColor;
+  border-color: rgb(88,152,210);
+  position: absolute;
+  left: $outsideRadius - ($insideRadius + $insideBorder);
+  top: $outsideRadius - ($insideRadius + $insideBorder);
+  z-index: 3;
+
+  /* 柔效果邊 */
+  // box-shadow: -2px -2px 8px rgba(0,101,193,0.8), 2px -2px 8px rgba(0,101,193,0.8), -2px 2px 8px rgba(0,101,193,0.8), 2px 2px 8px rgba(0,101,193,0.8), -2px -2px 8px rgba(0,101,193,0.8) inset, 2px -2px 8px rgba(0,101,193,0.8) inset, -2px 2px 8px rgba(0,101,193,0.8) inset, 2px 2px 4px rgba(0,101,193,0.8) inset;
+}
+
+@mixin circle-gap($degree) {
+  $gapHeight: $insideBorder;
+  $gapWidth: $insideRadius + $insideBorder;
+  background: $backgroundColor;
+  width: $gapWidth + $insideBorder * 0.5;
+  height: $gapHeight;
+  position: absolute;
+  left: $outsideRadius;
+  top: $outsideRadius - $gapHeight * 0.5;
+  z-index: 4;
+  transform: rotate($degree);
+  transform-origin: 0 50%;
+}
+
+.circle-gap-1 {
+  @include circle-gap(15deg);
+}
+
+.circle-gap-2 {
+  @include circle-gap(-105deg);
+}
+
+.circle-icon {
+    display: block;
+    width: $insideRadius;
+    z-index: 5;
+    position: absolute;
+    top: $outsideRadius - $insideRadius * 0.5;
+    left: $outsideRadius - $insideRadius * 0.5;
+}
+
+.title {
+  position: absolute;
+  text-align: left;
+  background: linear-gradient(45deg, #FFF, 4%, $mainColor, 40%, $backgroundColor);
+  left: $outsideRadius;
+  top: $outsideRadius * 0.5;
+  width: $titleLength;
+  height: $outsideRadius;
+  line-height: $outsideRadius;
+  z-index: 1;
+  padding-left: $outsideRadius + 20px;
+  color: #FFF;
+
+  h2 {
+    text-shadow: 1px 1px #333;
+    line-height: $outsideRadius;
+    margin: 0;
+    font-weight: normal;
+    font-size: 20px;
+  }
+  
+  &:after {
+    content: "";
+    position: absolute;
+    width: 35%;
+    height: 0;
+    border-top: $outsideRadius*0.9 solid $backgroundColor;
+    border-left: $outsideRadius*1.2 solid transparent;
+    top: 0;
+    right: 0;
+  }
+}
+
+$cardHeight: 200px;
+$cardWidth: 100%;
+.card {
+  position: relative;  
+  height: $cardHeight;
+  width: $cardWidth;
+}
+
+.card-content {
+  position: absolute;
+  width: calc(#{$cardWidth} - #{$outsideRadius} - #{$outsideBorder});
+  height: $cardHeight - $outsideRadius * 1.5 - $outsideBorder;
+  // background-color: ;
+  top: $outsideRadius * 1.5;
+  left: $outsideRadius;
+  border: 1px solid $mainColor;
+  border-radius: 6px;
+}
+
+$cornerLength: 30px;
+@mixin card-corner {
+  position: absolute;
+  width: $cornerLength;
+  height: $cornerLength /2;
+  background-color: $backgroundolor; 
+  transform-origin: 50% 100%;
+  border-top: 1px solid $mainColor;
+}
+
+.card-left-bottom-corner {
+  @include card-corner;
+  bottom: 0;
+  left: $outsideRadius - $cornerLength/2;
+  transform: rotate(45deg);
+}
+
+.card-right-bottom-corner {
+  @include card-corner;
+  bottom: 0;
+  right: -1 * $cornerLength /2;
+  transform: rotate(-45deg);
+}

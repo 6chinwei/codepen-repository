@@ -1,0 +1,67 @@
+body{ 
+  background: #000d20;
+}
+
+$headerHeight: 80px;
+
+svg {
+  display: inline-block;
+}
+
+.header {
+  position: absolute;
+}
+
+.header-circle { 
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: $headerHeight;
+  height: $headerHeight; 
+}
+
+.header-title {
+  position: absolute;
+  top: $headerHeight / 4;
+  left: $headerHeight * 0.9;
+  height: $headerHeight / 2;
+  width: auto;
+  z-index: 2;
+}
+
+.header-title-text {
+  position: absolute;
+  display: inline-block;
+  top: $headerHeight / 4;
+  left: $headerHeight * 1.1;
+  color: #FFF;
+  text-shadow: 1px 1px #333;
+  line-height: $headerHeight / 2;
+  margin: 0;
+  font-weight: normal;
+  text-transform: uppercase;
+  font-size: $headerHeight / 4;
+  z-index: 4;
+}
+
+.card {
+  position: relative;
+}
+
+.card-content {
+  position: absolute;
+  width: 100%;
+  height: 374px;
+  top: 80px;
+  left: 64px;
+  border-top: 8px solid #00397A;
+  border-bottom: 8px solid #00397A;
+}
+
+.card-left-border {
+  position: absolute;
+  top: 60px;
+  left: 34px;
+  height: 410px;
+  width: auto;
+}

@@ -1,0 +1,105 @@
+body {
+  background: #002452;
+  color: #FFF;
+  box-sizing: content-box;
+}
+
+// General
+$backgroundColor: #002452;
+$mainColor: #0065C1;
+
+// Circle
+$outsideRadius: 65px;
+$outsideBorder: 1px;
+$insideRadius: 45px;
+$insideBorder: 10px;
+
+// Title
+$titleLength: 80%;
+
+.header {
+  position: relative;  
+  background: $backgroundColor;
+}
+
+.circle {
+  // background: #000;
+  width: $outsideRadius * 2;
+  height: $outsideRadius * 2;
+  border-radius: 50%;
+  border: $outsideBorder solid rgba(88,152,210, 0.4);
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 2;
+  background: $backgroundColor;
+}
+
+.circle-inner {
+  // background: #000;
+  width: $insideRadius * 2;
+  height: $insideRadius * 2;
+  border-radius: 50%;
+  // border: $insideBorder solid #0065C1;
+  border-width: $insideBorder;
+  border-style: solid;
+  // border-color: $mainColor;
+  border-color: rgb(88,152,210);
+  position: absolute;
+  left: $outsideRadius - ($insideRadius + $insideBorder);
+  top: $outsideRadius - ($insideRadius + $insideBorder);
+  z-index: 3;
+
+  /* 柔效果邊 */
+  // box-shadow: -2px -2px 8px rgba(0,101,193,0.8), 2px -2px 8px rgba(0,101,193,0.8), -2px 2px 8px rgba(0,101,193,0.8), 2px 2px 8px rgba(0,101,193,0.8), -2px -2px 8px rgba(0,101,193,0.8) inset, 2px -2px 8px rgba(0,101,193,0.8) inset, -2px 2px 8px rgba(0,101,193,0.8) inset, 2px 2px 4px rgba(0,101,193,0.8) inset;
+}
+
+@mixin circle-gap($degree, $length) {
+  $gapHeight: $length;
+  $gapWidth: $insideRadius + $insideBorder;
+  background: $backgroundColor;
+  width: $gapWidth + $insideBorder * 0.5;
+  height: $gapHeight;
+  position: absolute;
+  left: $outsideRadius;
+  top: $outsideRadius - $gapHeight * 0.5;
+  z-index: 4;
+  transform: rotate($degree);
+  transform-origin: 0 50%;
+}
+
+.circle-gap-1 {
+  @include circle-gap(15deg, $insideBorder);
+}
+
+.circle-gap-2 {
+  @include circle-gap(-105deg, $insideBorder);
+}
+
+.title {
+  position: absolute;
+  background: linear-gradient(45deg, #FFF, 4%, $mainColor, 40%, $backgroundColor);
+  left: $outsideRadius + 20px;
+  top: $outsideRadius * 0.5;
+  width: $titleLength;
+  height: $outsideRadius;
+  z-index: 1;
+  padding-left: $outsideRadius;
+   
+  h2 {
+    line-height: $outsideRadius;
+    margin: 0;
+    font-weight: normal;
+  }
+  
+  &:after {
+    content: "";
+    position: absolute;
+    width: 35%;
+    height: 0;
+    border-top: $outsideRadius*0.9 solid $backgroundColor;
+    border-left: $outsideRadius*1.2 solid transparent;
+    top: 0;
+    right: 0;
+  }
+}

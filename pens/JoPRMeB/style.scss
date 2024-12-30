@@ -1,0 +1,78 @@
+/**
+ * Wave Decorator Mixin
+ * Adds a decorative wave effect to the bottom of an element.
+ *
+ * @param $color - The color of the wave.
+ * @param $amplitude - The height of the wave in pixels.
+ * @param $waveLength - The width of one wave cycle in pixels.
+ * @param $strokeWidth - The thickness of the wave stroke in pixels.
+ */
+@mixin wave-decorator(
+  $color: black,
+  $amplitude: 10,
+  $waveLength: 50,
+  $strokeWidth: 4
+) {
+  display: inline-block;
+  white-space: nowrap;
+  position: relative;
+
+  &::after {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transform: translate(0, 50%);
+    content: "";
+    display: inline-block;
+    width: 100%;
+    height: $amplitude * 2px;
+    background-color: $color;
+    /* 
+    About the follwing inline <svg>, the `viewBox` defines the coordinate system for the SVG,
+    where the width is `$waveLength` and the height is twice the `$amplitude`, 
+    matching the wave's vertical span. 
+    The `path` draws a wave using a series of quadratic curves (Q) and smooth curves (T), 
+    with control points determined by `$waveLength` and `$amplitude` for a seamless pattern.
+    */ 
+    mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 #{$waveLength} #{$amplitude * 2}"><path d="M0,#{$amplitude} Q#{$waveLength / 4},0 #{$waveLength / 2},#{$amplitude} T#{$waveLength},#{$amplitude}" fill="none" stroke="black" stroke-width="#{$strokeWidth}" stroke-linecap="round"/></svg>');
+    mask-repeat: repeat-x;
+  }
+}
+
+/* Usage */
+.section-title--pink {
+  @include wave-decorator(#ffb7c5);
+}
+
+.section-title--blue {
+  @include wave-decorator(#4a90e2);
+}
+
+.section-title--green {
+  @include wave-decorator(#a8d5ba);
+}
+
+/* Reset & Layout */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #f9f9fb;
+  color: #343a40;
+  font-family: Helvetica, Arial, sans-serif;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 960px;
+  width: 100%;
+  padding: 0 15px;
+}
+
+h2 {
+  font-size: 3rem;
+  font-weight: bold;
+}

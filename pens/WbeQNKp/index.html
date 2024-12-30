@@ -1,0 +1,30 @@
+<h2>TRY THIS</h2>
+<div class="container">
+  <hello-card name="John Doe"></hello-card>
+  <div>
+    <p>Name: <input type="text" id="name-input" value="John Doe"></p>
+  </div>
+</div>
+
+<hr>
+
+<h2>EXAMPLES</h2>
+
+<div class="container">
+  <hello-card name="勝元盛次"></hello-card>
+
+  <hello-card name="大石内蔵助"></hello-card>
+
+  <hello-card name="William Brandt"></hello-card>
+
+  <hello-card name="Theodore Brassel"></hello-card>
+</div>
+
+<!-- Template of <hello-card> -->
+<template id="card-template">
+  <div part="card" id="card">
+    <p part="greet">Hello, </p>
+    <p part="name" id="name" />
+  </div>
+  <div part="debug" id="debug"></div>
+</template>

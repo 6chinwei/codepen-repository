@@ -1,0 +1,23 @@
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --rotate: 0deg;
+}
+
+body {
+  background-color: #ddd;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  padding: 10px;
+}
+
+.arrow {
+  font-size: 180px;
+  transform: rotateZ(var(--rotate));
+  color: #333;
+}

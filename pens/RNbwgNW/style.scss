@@ -1,0 +1,141 @@
+@use "sass:map";
+@use "sass:list";
+
+/** Configuration **/
+$colors: (
+  0: #000, 1: #111, 2: #222, 3: #333, 4: #444, 
+  5: #555, 6: #666, 7: #777, 8: #888, 9: #999, 
+  10: #aaa, 11: #bbb, 12: #ccc, 13: #ddd, 14: #eee, 
+  15: #fff
+);
+$backgroundColor: #0f0f0f;
+$boxSize: 360px;
+$colorStepWidth: 3px;
+
+/**
+ * Generates a linear-gradient value from specified direction and color stops.
+ * @param {String} $direction - The direction of the gradient (e.g., 'top', 'right', 'bottom', 'left').
+ * @param {Number} [$startColorIndex=15] - The starting index of the color in the $colors map.
+ * @param {Number} [$endColorIndex=0] - The ending index of the color in the $colors map.
+ * @return {String} - A CSS linear-gradient string.
+ */
+@function generate-linear-gradient($direction, $startColorIndex: 15, $endColorIndex: 0) {
+  $gradients: ();
+  $colorStop: 0px;
+
+  @for $i from $startColorIndex through $endColorIndex {
+    $color: map.get($colors, $i);
+    $colorStop: $colorStop + $colorStepWidth;
+    
+    $gradients: list.append(
+      $gradients,
+      #{$color 0 $colorStop},
+      comma
+    );
+  }
+  @return linear-gradient(to #{$direction}, $gradients...);
+}
+
+/**
+ * Generates a box-shadow value
+ *
+ * @param {Number} $startColorIndex - The starting index for the color gradient.
+ * @param {Number} $endColorIndex - The ending index for the color gradient.
+ * @return {List} - A list of box-shadow values.
+ */
+
+@function generate-box-shadow($startColorIndex: 15, $endColorIndex: 0) {
+  $shadows: ();
+  $spreadRadius: 0px;
+
+  @for $i from $startColorIndex through $endColorIndex {
+    $color: map.get($colors, $i);
+    $spreadRadius: $spreadRadius + $colorStepWidth;
+
+    $shadows: list.append(
+      $shadows, 
+      #{0 0 0 $spreadRadius $color},
+      comma
+    );
+  }
+  @return $shadows;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: $backgroundColor;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.box {
+  position: relative;
+  transform: skew(-10deg, 5deg);
+}
+
+.center {
+  width: $boxSize - $colorStepWidth * 16 * 2;
+  height: $boxSize - $colorStepWidth * 16 * 2;
+  background-color: $backgroundColor;
+  margin: $colorStepWidth * 16;
+  box-shadow: generate-box-shadow();
+  flex: 0 0 auto;
+  overflow: hidden;
+}
+
+.top {
+  position: absolute;
+  bottom: $boxSize;
+  left: 0;
+  width: $boxSize;
+  height: $colorStepWidth * 16;
+  background-image: generate-linear-gradient(top);
+  transform: skew(45deg);
+  transform-origin: bottom left;
+}
+
+.left {
+  position: absolute;
+  right: $boxSize;
+  top: 0;
+  width: $colorStepWidth * 16;
+  height: $boxSize;
+  background-image: generate-linear-gradient(left);
+  transform: skew(0, 45deg);
+  transform-origin: top right;
+}
+
+.bottom {
+  position: absolute;
+  bottom: $colorStepWidth * 16;
+  left: $colorStepWidth * 16;
+  width: $boxSize - $colorStepWidth * 16 * 2;
+  height: $colorStepWidth * 16 * 0.5;
+  background-image: generate-linear-gradient(top, 12, 5);
+  clip-path: polygon(
+    0% 0%,
+    calc(100% - #{$colorStepWidth} * 16 * 0.5) 0%, // Interpolation for the CodePen SCSS
+    100% 100%,
+    0% 100%
+  );
+}
+
+.right {
+  position: absolute;
+  bottom: $colorStepWidth * 16;
+  right: $colorStepWidth * 16;
+  height: $boxSize - $colorStepWidth * 16 * 2;
+  width: $colorStepWidth * 16 * 0.5;
+  background-image: generate-linear-gradient(left, 12, 5);
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% calc(100% - #{$colorStepWidth} * 16 * 0.5) // Interpolation for the CodePen SCSS
+  );
+}

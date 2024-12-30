@@ -1,0 +1,90 @@
+:root {
+  --available-color-schemes: light dark;
+
+  --background-color: light-dark(#fff8dc, #2c2c2c);
+  --text-color: light-dark(#333333, #e0e0e0);
+
+  --toggle-color: light-dark(#87cefa, #5a9bd5);
+  --toggle-text-color: light-dark(#333333, #2c2c2c);
+  --toggle-shadow-color: light-dark(#6ca6cd, #3b6f91);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  color-scheme: var(--available-color-schemes);
+  background-color: var(--background-color);
+  color: var(--text-color);
+  transition: background-color 0.3s, color 0.3s;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  line-height: 1.4;
+}
+
+body:has(input[value="light"]:checked) {
+  --available-color-schemes: light; /* Forces light color-scheme */
+}
+
+body:has(input[value="system"]:checked) {
+  --available-color-schemes: light dark;
+}
+
+body:has(input[value="dark"]:checked) {
+  --available-color-schemes: dark; /* Forces dark color-scheme */
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.title {
+  color: var(--text-color);
+}
+
+input[type="radio"] {
+  appearance: none;
+  opacity: 0;
+  position: absolute;
+  width: 0;
+  height: 0;
+}
+
+label {
+  cursor: pointer;
+  display: inline-block;
+  padding: 10px;
+  border-radius: 50%;
+  aspect-ratio: 1 / 1;
+  width: 120px;
+  height: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  background-color: var(--toggle-color);
+  color: var(--toggle-text-color);
+  cursor: pointer;
+  opacity: 0.8;
+  transition: opacity 0.3s, transform 0.3s;
+  transform: scale(0.8);
+  box-shadow: 3px 3px 6px var(--toggle-shadow-color);
+}
+
+label:has(input:checked) {
+  opacity: 1;
+  transform: scale(1);
+}
+
+label .icon {
+  font-size: 32px;
+}
+
+label .name {
+  font-size: 18px;
+}

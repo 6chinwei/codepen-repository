@@ -1,0 +1,45 @@
+body{ 
+  background: #000d20;
+}
+
+$headerHeight: 100px;
+
+svg {
+  display: inline-block;
+}
+
+.header {
+  position: relative;
+}
+
+.header-circle { 
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: $headerHeight;
+  height: $headerHeight; 
+}
+
+.header-title {
+  position: absolute;
+  top: $headerHeight / 4;
+  left: $headerHeight * 0.9;
+  height: $headerHeight / 2;
+  width: auto;
+  z-index: 2;
+}
+
+.header-title-text {
+  position: absolute;
+  display: inline-block;
+  top: $headerHeight / 4;
+  left: $headerHeight * 1.1;
+  color: #FFF;
+  text-shadow: 1px 1px #333;
+  line-height: $headerHeight / 2;
+  margin: 0;
+  font-weight: normal;
+  text-transform: uppercase;
+  font-size: $headerHeight / 4;
+  z-index: 4;
+}

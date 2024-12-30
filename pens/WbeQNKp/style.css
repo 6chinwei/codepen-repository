@@ -1,0 +1,82 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  text-align: center;
+  font-family: "Helvetica Neue", Helvetica, Arial, "PingFang TC", "Heiti TC",
+    "微軟正黑體", sans-serif;
+  color: #333;
+  background-color: #edcbed;
+  font-size: 16px;
+  line-height: 1.4;
+}
+
+h2 {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+hr {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  border-top: 1px solid #999;
+}
+
+input {
+  padding: 5px;
+  font-size: 16px;
+}
+
+.container {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* Styles of <hello-card> */
+hello-card {
+  --name-font-size: 48px;
+}
+
+hello-card::part(card) {
+  width: 240px;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  padding: 15px;
+  background-color: rgb(108, 191, 214);
+  border-radius: 5px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+hello-card::part(greet) {
+  color: #ddd;
+  font-size: 16px;
+  margin: 0;
+  font-style: italic;
+}
+
+hello-card::part(name) {
+  font-size: var(--name-font-size);
+  color: #fff;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  font-weight: bold;
+  white-space: nowrap;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+hello-card::part(debug) {
+  text-align: center;
+  color: #999;
+  padding-top: 5px;
+}
