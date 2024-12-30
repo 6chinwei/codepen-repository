@@ -1,8 +1,11 @@
 # codepen-repository
 
-- `./pens`: The source code backup of my CodePen projects.
-- `./scripts`: The scripts to download source code from CodePen.
-
+A backup of the source code of my CodePen projects.
+  
+Folder structure:
+- [`pens`](./pens): A backup of the source code of each pen. All of them are generated automatically!
+- [`scripts`](./scripts): Scripts to download source code from CodePen and generate the `README.md`.
+  
 This project uses [codepen-fetcher](https://github.com/6chinwei/codepen-fetcher/) to download pens.
 
 ### Usage (Manually)
