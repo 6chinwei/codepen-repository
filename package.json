@@ -1,0 +1,22 @@
+{
+  "name": "codepen-repository",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "download": "tsx scripts/download.ts",
+    "lint": "eslint ."
+  },
+  "author": "6chinwei <6chinwei@gmail.com>",
+  "license": "MIT",
+  "description": "",
+  "devDependencies": {
+    "@eslint/js": "^9.17.0",
+    "@stylistic/eslint-plugin": "^2.12.1",
+    "@types/node": "^22.10.2",
+    "codepen-fetcher": "^1.0.1",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2",
+    "typescript-eslint": "^8.18.2"
+  }
+}
