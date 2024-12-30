@@ -32,7 +32,10 @@ export function createTableOfContents (pens: Pen[], folderUrl: URL): Promise<voi
 }
 
 export function saveReadme (pen: Pen, folderUrl: URL): Promise<void> {
-  const content = `# ${pen.title}\n\n${pen.description?.source?.body}`;
+  const content = `
+# ${pen.title}
+[${pen.url}](${pen.url})\n\n
+${pen.description?.source?.body}`;
   const fileName = 'README.md';
 
   return saveFile(fileName, folderUrl, content);
