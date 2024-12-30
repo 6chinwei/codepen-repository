@@ -2,6 +2,7 @@ import { fetchPensByUserId, Pen } from 'codepen-fetcher';
 import config from './config';
 import {
   cleanFolder,
+  createTableOfContents,
   createFolder,
   saveReadme,
   saveHtml,
@@ -38,6 +39,7 @@ const penPromises = pens.map(async (pen) => {
   ]);
 });
 
+await createTableOfContents(pens, pensFolderUrl);
 await Promise.all(penPromises);
 
 console.log('--');

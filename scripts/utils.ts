@@ -22,6 +22,15 @@ export async function saveFile(fileName: string, folderUrl: URL, content: string
   return console.log(`Save file: ${fileUrl.pathname}`);
 }
 
+export function createTableOfContents (pens: Pen[], folderUrl: URL): Promise<void> {
+  const content = pens.reduce((curry: string, pen: Pen) => {
+    return `${curry}- [${pen.title}](./${pen.id})\n`;
+  }, `# Table of Contents\n\n> Updated: ${new Date().toLocaleDateString()}\n\n`);
+  const fileName = 'README.md';
+
+  return saveFile(fileName, folderUrl, content);
+}
+
 export function saveReadme (pen: Pen, folderUrl: URL): Promise<void> {
   const content = `# ${pen.title}\n\n${pen.description?.source?.body}`;
   const fileName = 'README.md';
