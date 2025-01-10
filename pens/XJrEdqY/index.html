@@ -1,0 +1,11 @@
+<!-- 
+1. Initially, the browser prefetches styles.css but does not apply it.
+2. After the DOM is ready, the JavaScript changes the rel attribute to stylesheet
+
+It can help reduce initial rendering time by deferring "non-critical" CSS.
+<noscript> is for backup
+-->
+<link rel="prefetch" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" as="style">
+<noscript>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+</noscript>

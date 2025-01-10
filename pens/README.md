@@ -1,7 +1,9 @@
 # Table of Contents
 
-> Updated: 2024/12/30
+> Updated: 2025/1/11
 
+- [Deferred CSS Loading ](./XJrEdqY)
+- [Audio Frequency Visualization](./GgKQXVa)
 - [Example Pen](./gbYRQmN)
 - [Gamma Correction Visualization](./EaYNjEG)
 - [Wave Underline Decorator with CSS `mask-image` and SVG](./JoPRMeB)
